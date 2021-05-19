@@ -1,7 +1,7 @@
 # agabus
 
 # add server/database/dbconfig.js
-
+```js
 const config = {
     server: 'add server',    
     port: 1433,
@@ -25,3 +25,4 @@ const config = {
 module.exports = {
     config
 }
+```
