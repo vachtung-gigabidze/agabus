@@ -1,0 +1,8 @@
+{
+ "getAll": "select * from MVC_ActionContent",
+ "getById": "select * from MVC_ActionContent WHERE id = @id",
+ "add": "INSERT INTO [MVC_ActionContent] ([Action] ,[Controller] ,[Name] ,[Content] ,[Description] ,[Owner] ,[IsActive] ,[DataArea] ,[OrderKey] ,[Context] ,[RecVersion] ,[ChangeDate] ,[CntSubHdr] ,[CntFooter] ,[ImageKey] ,[IsExStyle] ,[QRUrl])VALUES (@Action, @Controller ,@Name, @Content, @Description, @Owner, @IsActive, @DataArea, @OrderKey, @Context, @RecVersion, @ChangeDate, @CntSubHdr, @CntFooter, @ImageKey, @IsExStyle, @QRUrl)",
+ "delete": "DELETE FROM MVC_ActionContent WHERE id = @id",
+ "update": "UPDATE [MVC_ActionContent] SET [Action] = @Action, [Controller] = @Controller, [Name] = @Name, [Content] = @Content, [Description] = @Description, [Owner] = @Owner, [IsActive] = @IsActive, [DataArea] = @DataArea, [OrderKey] = @OrderKey, [Context] = @Context, [RecVersion] = @RecVersion, [ChangeDate] = @ChangeDate, ,[CntSubHdr] = @CntSubHdr ,[CntFooter] = @CntFooter ,[ImageKey] = @ImageKey ,[IsExStyle] = @IsExStyle ,[QRUrl] = @QRUrl WHERE id = @Id"
+}
+

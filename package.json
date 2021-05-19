@@ -1,0 +1,26 @@
+{
+  "name": "agabus",
+  "version": "1.0.0",
+  "description": "content manager website nvavia.ru",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon server/app.js",
+    "start": "node server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mssql", "rest api", "node.js", "vue", "js"],
+  "author": "Dmitry Zyadik",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mssql": "^6.2.1",
+    "serve-favicon": "^2.5.0",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
