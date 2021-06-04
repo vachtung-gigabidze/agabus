@@ -13,4 +13,6 @@ router.get('/addAC', controller.addAC);
 router.get('/deleteAC/:id/', controller.addAC);
 router.get('/favicon.ico', (req, res) => res.status(200))
 
+// router.use('/graphql', controller.graphqlHTTP);
+
 module.exports = router;

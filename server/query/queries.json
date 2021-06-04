@@ -1,8 +1,14 @@
-{
- "getAll": "select * from MVC_ActionContent_091219back",
- "getById": "select * from MVC_ActionContent_091219back WHERE id = @id",
- "add": "INSERT INTO [MVC_ActionContent_091219back] ([Action] ,[Controller] ,[Name] ,[Content] ,[Description] ,[Owner] ,[IsActive] ,[DataArea] ,[OrderKey] ,[Context] ,[RecVersion] ,[ChangeDate] ,[CntSubHdr] ,[CntFooter] ,[ImageKey] ,[IsExStyle] ,[QRUrl])VALUES (@Action, @Controller ,@Name, @Content, @Description, @Owner, @IsActive, @DataArea, @OrderKey, @Context, @RecVersion, @ChangeDate, @CntSubHdr, @CntFooter, @ImageKey, @IsExStyle, @QRUrl)",
- "delete": "DELETE FROM MVC_ActionContent_091219back WHERE id = @id",
- "update": "UPDATE [MVC_ActionContent_091219back] SET [Action] = @Action, [Controller] = @Controller, [Name] = @Name, [Content] = @Content, [Description] = @Description, [Owner] = @Owner, [IsActive] = @IsActive, [DataArea] = @DataArea, [OrderKey] = @OrderKey, [Context] = @Context, [RecVersion] = @RecVersion, [ChangeDate] = @ChangeDate, ,[CntSubHdr] = @CntSubHdr ,[CntFooter] = @CntFooter ,[ImageKey] = @ImageKey ,[IsExStyle] = @IsExStyle ,[QRUrl] = @QRUrl WHERE id = @Id"
+{    
+ "getAllActionContent": "select * from MVC_ActionContent_091219back",
+ "getByIdActionContent": "select * from MVC_ActionContent_091219back WHERE id = @id",
+ "addActionContent": "INSERT INTO [MVC_ActionContent_091219back] ([Action] ,[Controller] ,[Name] ,[Content] ,[Description] ,[Owner] ,[IsActive] ,[DataArea] ,[OrderKey] ,[Context] ,[RecVersion] ,[ChangeDate] ,[CntSubHdr] ,[CntFooter] ,[ImageKey] ,[IsExStyle] ,[QRUrl])VALUES (@Action, @Controller ,@Name, @Content, @Description, @Owner, @IsActive, @DataArea, @OrderKey, @Context, @RecVersion, @ChangeDate, @CntSubHdr, @CntFooter, @ImageKey, @IsExStyle, @QRUrl)",
+ "deleteActionContent": "DELETE FROM MVC_ActionContent_091219back WHERE id = @id",
+ "updateActionContent": "UPDATE [MVC_ActionContent_091219back] SET [Action] = @Action, [Controller] = @Controller, [Name] = @Name, [Content] = @Content, [Description] = @Description, [Owner] = @Owner, [IsActive] = @IsActive, [DataArea] = @DataArea, [OrderKey] = @OrderKey, [Context] = @Context, [RecVersion] = @RecVersion, [ChangeDate] = @ChangeDate, [CntSubHdr] = @CntSubHdr ,[CntFooter] = @CntFooter ,[ImageKey] = @ImageKey ,[IsExStyle] = @IsExStyle ,[QRUrl] = @QRUrl WHERE id = @Id",
+
+ "getAllInfoItems": "select * from WWW_InfoItems",
+ "getByIdInfoItems": "select * from WWW_InfoItems WHERE id = @id",
+ "addInfoItems": "INSERT INTO [WWW_InfoItems] ([ItemType] ,[Owner] ,[Caption] ,[CaptionImageUrl] ,[FullImageUrl] ,[ShortText], [Text] ,[ShortStyle] ,[Style] ,[ContentDate] ,[PublishDate] ,[PublishOwner] ,[BlindImageUrl]) VALUES (@ItemType ,@Owner ,@Caption ,@CaptionImageUrl ,@FullImageUrl ,@ShortText, @Text ,@ShortStyle ,@Style ,@ContentDate ,@PublishDate ,@PublishOwner ,@BlindImageUrl)",
+ "deleteInfoItems": "DELETE FROM WWW_InfoItems WHERE id = @id",
+ "updateInfoItems": "UPDATE [WWW_InfoItems] SET [ItemType] = @ItemType, [Owner] = @Owner, [Caption] = @Caption, [CaptionImageUrl] = @CaptionImageUrl, [FullImageUrl] = @FullImageUrl,  [ShortText] = @ShortText,  [Text] = @Text,  [ShortStyle] = @ShortStyle,  [Style] = @Style,  [ContentDate] = @ContentDate,  [PublishDate] = @PublishDate,  [PublishOwner] = @PublishOwner ,[BlindImageUrl] = @BlindImageUrl WHERE id = @Id"
 }
 

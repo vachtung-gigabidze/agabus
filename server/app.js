@@ -1,4 +1,7 @@
 const express = require('express');
+// const { graphqlHTTP } = require('express-graphql');
+// const schema = require('./graphql/schema');
+// const infoItems = [{id:1, ItemType:'News'}];
 const app = express();
 var favicon = require('serve-favicon')
 
@@ -16,6 +19,39 @@ const router = require('./routes/route');
 // } = require('./database/dboperation.js');
 
 app.use(cors());
+
+
+// const createInfoItem = (input) => {
+//     const id = Date.now();
+//     return {
+//         id, ...input
+//     }
+// }
+
+// const root = {
+//     getAllInfoItem: () => {
+//         return infoItems
+//     },
+//     getInfoItem: ({id}) => {
+//         return infoItems.find(infoItem => infoItem.id == id)
+//     },
+//     createInfoItem: ({input}) => {
+//         const infoItem = createInfoItem(input);
+//         infoItems.push(infoItem);
+//         return infoItem;
+
+//     }
+// }
+
+// app.use(
+//     '/graphql',
+//     graphqlHTTP({
+//       schema,
+//       graphiql: true,
+//       rootValue: root,
+
+//     }),
+//   );
 
 app.use(favicon(path.join(__dirname, '../client', 'favicon-32x32.png')))
 
