@@ -1,0 +1,35 @@
+{
+    "regAirService": {
+        "name" : "RegAirService",
+        "decsription" : "Реестр заявок на оказание услуг аэропорта",
+        "fields": [            
+            {"name":"id", "type" : "int", "default":"", "notNull" : true, "primaryKey":true, "increment":true},
+            {"name":"RegNumber", "type" : "nchar(100)", "default":"", "notNull" : true},
+            {"name":"DateCreate", "type" : "datetime", "default":"null", "notNull" : true},
+            {"name":"DateTake", "type" : "datetime", "default":"null"},
+            {"name":"OutNumber", "type" : "nchar(50)", "default":""},
+            {"name":"OutDate", "type" : "datetime", "default":""},
+            {"name":"CountSheets", "type" : "int", "default":""},
+            {"name":"SourceName", "type" : "nchar(300)", "default":""},
+            {"name":"ReturnOutDate", "type" : "datetime", "default":""},
+            {"name":"ReturnOutNumber", "type" : "nchar(50)", "default":""},
+            {"name":"Result", "type" : "nchar(300)", "default":""},
+            {"name":"OutProjectDate", "type" : "datetime", "default":""},
+            {"name":"OutProjectNumber", "type" : "nchar(100)", "default":""},
+            {"name":"OutDenyDate", "type" : "datetime", "default":""},
+            {"name":"OutDenyNumber", "type" : "nchar(50)", "default":""},
+            {"name":"OutDenyReason", "type" : "nchar(300)", "default":""},
+            {"name":"IsActive", "type" : "bit", "default":""},
+            {"name":"OutRosAviaDate", "type" : "datetime", "default":""},
+            {"name":"OutRosAviaNumber", "type" : "nchar(50)", "default":""}
+        ],
+    
+    "queries" : {
+        "select": "SELECT [id] ,[RegNumber] ,[DateCreate] ,convert(varchar, [DateTake], 23) as [DateTake] ,[OutNumber] ,convert(varchar, [OutDate], 23) as [OutDate]  ,[CountSheets] ,[SourceName] ,[ReturnOutDate] ,[ReturnOutNumber] ,[Result]  ,convert(varchar, [OutProjectDate], 23) as [OutProjectDate] ,[OutProjectNumber] ,[OutDenyDate] ,[OutDenyNumber] ,[OutDenyReason] ,[IsActive] ,[OutRosAviaDate] ,[OutRosAviaNumber] FROM [WWW_RegAirService]order by [DateCreate] desc",
+        "selectById": "select * from WWW_RegAirService WHERE id = @id",
+        "insert": "INSERT INTO [WWW_RegAirService] ([RegNumber] ,[DateCreate] ,[DateTake] ,[OutNumber] ,[OutDate] ,[CountSheets] ,[SourceName] ,[ReturnOutDate] ,[ReturnOutNumber] ,[Result] ,[OutProjectDate] ,[OutProjectNumber] ,[OutDenyDate] ,[OutDenyNumber] ,[OutDenyReason] ,[IsActive] ,[OutRosAviaDate] ,[OutRosAviaNumber]) VALUES (@RegNumber, @DateCreate, @DateTake, @OutNumber, @OutDate, @CountSheets, @SourceName, @ReturnOutDate, @ReturnOutNumber, @Result, @OutProjectDate, @OutProjectNumber, @OutDenyDate, @OutDenyNumber, @OutDenyReason, @IsActive, @OutRosAviaDate, @OutRosAviaNumber )",
+        "delete": "DELETE FROM WWW_RegAirService WHERE id = @id",
+        "update": "UPDATE [WWW_RegAirService] SET [RegNumber] = @RegNumber, [DateCreate] = @DateCreate, [DateTake] = @DateTake, [OutNumber] = @OutNumber, [OutDate] = @OutDate, [CountSheets] = @CountSheets, [SourceName] = @SourceName      ,[ReturnOutDate] = @ReturnOutDate      ,[ReturnOutNumber] = @ReturnOutNumber      ,[Result] = @Result      ,[OutProjectDate] = @OutProjectDate      ,[OutProjectNumber] = @OutProjectNumber      ,[OutDenyDate] = @OutDenyDate      ,[OutDenyNumber] = @OutDenyNumber      ,[OutDenyReason] = @OutDenyReason      ,[IsActive] = @IsActive      ,[OutRosAviaDate] = @OutRosAviaDate      ,[OutRosAviaNumber] = @OutRosAviaNumber WHERE id = @Id"
+    }
+}
+}

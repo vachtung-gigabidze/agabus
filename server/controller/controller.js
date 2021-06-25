@@ -16,58 +16,65 @@ const schema = require('../graphql/schema');
 
 class MainController {
 
+    graphqlHTTP() {
+        const infoItems = [{
+            id: 1,
+            ItemType: 'News'
+        }];
+        const root = {
+            getAllInfoItem: () => {
+                    return infoItems
+                }
+                // async () =>{
+                //     try {
+                //         const pool = await poolPromise;
+                //         const result = await pool.request().query(queries.getAllInfoItem);
+                //         res.json(result.recordset);
+                //     } catch (error) {
+                //         res.status(500);
+                //         res.send(error.message);
+                //     }
+                // }
+                ,
+            //getInfoItem: ({id}) => this.getByIdInfoItem({id})
+            // ,
+            // createInfoItem: ({
+            //     input
+            // }) => {
+            //     const infoItem = createInfoItem(input);
+            //     infoItems.push(infoItem);
+            //     return infoItem;
+            // }
+        }
+
+        graphqlHTTP({
+            schema,
+            graphiql: true,
+            rootValue: root,
+        })
+    }
 
 
-    // async graphqlHTTP() {
-    //     const root = {
-    //         getAllInfoItem: await this.getAllInfoItem()
-    //         ,
-    //         getInfoItem: ({id}) => this.getByIdInfoItem({id})
-    //         // ,
-    //         // createInfoItem: ({
-    //         //     input
-    //         // }) => {
-    //         //     const infoItem = createInfoItem(input);
-    //         //     infoItems.push(infoItem);
-    //         //     return infoItem;
-    //         // }
-    //     }
 
-    //     graphqlHTTP({
-    //         schema,
-    //         graphiql: true,
-    //         rootValue: root,
-    //     })
-    // }
+    async getByIdInfoItem({
+        id
+    }) {
+        try {
+            if (id != null) {
+                const pool = await poolPromise;
+                const result = await pool.request()
+                    .input("id", sql.Int, id)
+                    .query(queries.getByIdInfoItem);
 
-    // async getAllInfoItem() {
-    //     try {
-    //         const pool = await poolPromise;
-    //         const result = await pool.request().query(queries.getAllInfoItem);
-    //         res.json(result.recordset);
-    //     } catch (error) {
-    //         res.status(500);
-    //         res.send(error.message);
-    //     }
-    // }
-
-    // async getByIdInfoItem({id}) {
-    //     try {
-    //         if (id != null) {
-    //             const pool = await poolPromise;
-    //             const result = await pool.request()
-    //                 .input("id", sql.Int, id)
-    //                 .query(queries.getByIdInfoItem);
-
-    //             res.json(result.recordset);
-    //         } else {
-    //             res.send('Please fill all the details!')
-    //         }
-    //     } catch (error) {
-    //         res.status(500);
-    //         res.send(`Error: ${error.message}`);
-    //     }
-    // }
+                res.json(result.recordset);
+            } else {
+                res.send('Please fill all the details!')
+            }
+        } catch (error) {
+            res.status(500);
+            res.send(`Error: ${error.message}`);
+        }
+    }
 
     async getAllActionContent(req, res) {
         try {
@@ -295,6 +302,7 @@ class MainController {
     async index(req, res) {
         res.sendFile(path.resolve(__dirname, '../../client', 'index.html'));
     }
+   
     async editAC(req, res) {
         res.sendFile(path.resolve(__dirname, '../../client', 'editAC.html'));
     }

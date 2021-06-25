@@ -2,6 +2,7 @@ const express = require('express');
 // const { graphqlHTTP } = require('express-graphql');
 // const schema = require('./graphql/schema');
 // const infoItems = [{id:1, ItemType:'News'}];
+const controller = require('./controller/controller');
 const app = express();
 var favicon = require('serve-favicon')
 
@@ -42,7 +43,7 @@ app.use(cors());
 
 //     }
 // }
-
+// app.use('/graphql', controller.graphqlHTTP());
 // app.use(
 //     '/graphql',
 //     graphqlHTTP({
