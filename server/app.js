@@ -108,6 +108,9 @@ const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, '../client')));
 
+app.use(express.static(path.join(__dirname, '../node_modules')));
+// app.use(express.static(path.join(__dirname, '../node_modules/quill-html-edit-button')));
+
 // app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
 // });

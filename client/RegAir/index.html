@@ -35,53 +35,53 @@
                         <li v-for="error in errors">{{ error }}</li>
                         </ul>
                     </p>                   
-                    <p>
+                    <div>
                         <label for="RegNumber">Вх. рег. № заявки</label>
                         <input type="text" id="RegNumber" v-model="reg_air_service.RegNumber" name="RegNumber" required></input>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="DateTake">Дата и время получения заявки</label> 
                         <input type="date" id="DateTake" v-model="reg_air_service.DateTake" name="DateTake" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="OutNumber">Исх. рег. № заявки</label> 
                         <input type="text" id="OutNumber" v-model="reg_air_service.OutNumber" name="OutNumber" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="OutDate">Дата и время отправления заявки</label> 
                         <input type="date" id="OutDate" v-model="reg_air_service.OutDate" name="OutDate" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="CountSheets">Кол-во листов в заявке</label> 
                         <input type="text" id="CountSheets" v-model="reg_air_service.CountSheets" name="CountSheets" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="SourceName">Наименование потребителя, представившего заявку</label> 
                         <input type="text" id="SourceName" v-model="reg_air_service.SourceName" name="SourceName" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="Result">Результат расмотрения заявки</label> 
                         <input type="text" id="Result" v-model="reg_air_service.Result" name="Result" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="OutDenyDate">Дата и исходящий номер письма об отказе от исполнения заявки</label> 
                         <input type="date" id="OutDenyDate" v-model="reg_air_service.OutDenyDate" name="OutDenyDate" required/>                     
                         <input type="text" id="ReturnOutNumber" v-model="reg_air_service.ReturnOutNumber" name="ReturnOutNumber" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="OutDenyReason">Причина отказа от исполнения заявки</label> 
                         <input type="text" id="OutDenyReason" v-model="reg_air_service.OutDenyReason" name="OutDenyReason" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="OutProjectDate">Дата и номер договора об оказании услуг</label> 
                         <input type="date" id="OutProjectDate" v-model="reg_air_service.OutProjectDate" name="OutProjectDate" required/>                   
                         <input type="text" id="OutProjectNumber" v-model="reg_air_service.OutProjectNumber" name="OutProjectNumber" required/>
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label for="OutRosAviaDate">Дата и исходящий номер письма в Росавиацию (план мероприятий)</label> 
                         <input type="date" id="OutRosAviaDate" v-model="reg_air_service.OutRosAviaDate" name="OutRosAviaDate" required/>                    
                         <input type="text" id="OutRosAviaNumber" v-model="reg_air_service.OutRosAviaNumber" name="OutRosAviaNumber" required/>
-                    </p> 
+                    </div> 
                     </form>
                 </div>
   
@@ -105,11 +105,10 @@
 <body>
     <div class="container pt-3" id="app" v-cloak>
         <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <!-- <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> -->
-
-                Aquila
+            <a class="navbar-brand" href="../">
+                <img src="./favicon.ico" width="48" height="48" class="d-inline-block align-top" alt="">                
             </a>
+            <h2>Реестр заявок на оказание услуг аэропорта</h2>
             <button class="show-edit btn btn-primary" @click="showEdit = true; selectId = 0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
@@ -118,23 +117,23 @@
                 </svg>
                 Новая заявка
             </button>
-        </nav>
-        <h2>Реестр заявок на оказание услуг аэропорта</h2>
+        </nav>        
 
         <div v-if="loading">
             <loader></loader>
         </div>
 
-        <div v-else-if="regAirServices.length" style="overflow: scroll; width: 100%; height: 100%">
+        <div v-else-if="regAirServices.length" style="overflow: auto; width: 100%; height: 100%">
 
             <modal-edit v-if="showEdit" @close="showEdit = false"
-                v-bind:reg_air_service="selectId === 0? {RegNumber: 'Б/Н', DateTake: (new Date()).toISOString().split('T')[0]} :regAirServices.filter(x => x.id === selectId)[0]">
+                v-bind:reg_air_service="selectId === 0? {RegNumber: 'Б/Н', DateCreate: (new Date()).toISOString().split('T')[0], DateTake: (new Date()).toISOString().split('T')[0]} :regAirServices.filter(x => x.id === selectId)[0]">
                 <h3 slot="header">Редактирование</h3>
             </modal-edit>
 
             <table class="table table-sm" style="width: 100%">
                 <thead class="thead-light">
                     <tr>
+                        <th>#</th>
                         <th>
                             Вх. рег. № заявки
                         </th>
@@ -174,7 +173,7 @@
                 <tbody>
                     <tr v-for="regAirService in regAirServices">
                         <!-- <th scope="row">{{actionContent.id}} <a :href="'/editAC/' + actionContent.id">+</a></th> -->
-                        <th scope="row">{{regAirService.RegNumber}}
+                        <th scope="row">
                             <button class="show-edit btn btn-success"
                                 @click="showEdit = true; selectId = regAirService.id">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -184,9 +183,11 @@
                                     <path fill-rule="evenodd"
                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                 </svg>
-
                             </button>
-
+                        </th>
+                        
+                        <th scope="row">
+                            {{regAirService.RegNumber}}
 
                         </th>
                         <td>{{regAirService.DateTake}}</td>
@@ -219,8 +220,8 @@
 
     </div>
 
-    <script type="module" src="reg_air_models.js"></script>
-    <script type="module" src="reg_air_service.js"></script>
+    <script type="module" src="../RegAir/reg_air_models.js"></script>
+    <script type="module" src="../RegAir/reg_air_service.js"></script>
 </body>
 
 </html>

@@ -45,31 +45,16 @@ Vue.component("modal-edit", {
         },
         createRegAirService() {
             //const {...regAirservice} = this.form;
-            console.log('Create: ', this.reg_air_service);
-
-            // this.contacts.push({...contact, id: Date.now(), marked: false});
-            // this.form.name = this.form.value = '';
-
-            //
-            // this.regAirService.Owner = 1;
-            // this.aC.IsActive= true;
-            // this.aC.DataArea= "v2";
-            // this.aC.OrderKey= 100;
-            // this.aC.Context= "v2 ";
-            // this.aC.RecVersion = 13;
-            // this.aC.ChangeDate = "2021-05-14T09:35:00.000Z";      
-            // this.aC.CntSubHdr = '';
-            // this.aC.CntFooter = '';
-            // this.aC.ImageKey = '';
-            // this.aC.IsExStyle = 0;      
-            // this.aC.QRUrl='';
+            //console.log('Create: ', this.reg_air_service);           
             const ret = request('/api/addRegAirService/', 'POST', this.reg_air_service); 
-            this.showEdit = false               
+            //this.showEdit = false;  
+            //console.log(ret);
+            this.$parent.refresh();//regAirServices.push(this.reg_air_service);
         },
         updateRegAirService: function() {    
             //const {...regAirservice} = this.form;
             console.log('Update:', this.reg_air_service);
-            //const ret = request(`/api/updateActionContent/${this.aC.id}/`, 'PUT', this.aC);  
+            const ret = request(`/api/updateRegAirService/${this.reg_air_service.id}/`, 'PUT', this.reg_air_service);  
         } 
     },
     async mounted() {
@@ -123,14 +108,24 @@ new Vue({
             // this.contacts = this.contacts.filter(c=> c.id === id)
             const ret = request(`/api/deleteActionContent/${id}/`, 'DELETE');    
             console.log('DELETE', ret);
-
+        },
+        refresh() {
+            //console.log('refresh');
+            this.getRegAirServices();
+            //this.$forceUpdate();
+        },
+        async getRegAirServices() {
+            const data = await request('/api/regAirService');  
+            //console.log('data: ', data);          
+            this.regAirServices = data; 
         }
     },
     async mounted() {
         this.loading = true;
-        const data = await request('/api/regAirService');
-        console.log('RegAir: ', data);
-        this.regAirServices = data; //await request('/api/actionContent');
+        this.getRegAirServices();
+        //const data = await request('/api/regAirService');
+        //console.log('RegAir: ', data);
+        //this.regAirServices = data; //await request('/api/actionContent');
         this.loading = false;
     }
 });
@@ -151,6 +146,6 @@ async function request(url, method = 'GET', data = null) {
         })
         return await response.json();
     } catch (e) {
-        console.warn('Error:', e.message);
+        console.warn('Error:', e);
     }
 }

@@ -9,7 +9,7 @@
             {"name":"DateTake", "type" : "datetime", "default":"null"},
             {"name":"OutNumber", "type" : "nchar(50)", "default":""},
             {"name":"OutDate", "type" : "datetime", "default":""},
-            {"name":"CountSheets", "type" : "int", "default":""},
+            {"name":"CountSheets", "type" : "int", "default":0},
             {"name":"SourceName", "type" : "nchar(300)", "default":""},
             {"name":"ReturnOutDate", "type" : "datetime", "default":""},
             {"name":"ReturnOutNumber", "type" : "nchar(50)", "default":""},
@@ -19,17 +19,52 @@
             {"name":"OutDenyDate", "type" : "datetime", "default":""},
             {"name":"OutDenyNumber", "type" : "nchar(50)", "default":""},
             {"name":"OutDenyReason", "type" : "nchar(300)", "default":""},
-            {"name":"IsActive", "type" : "bit", "default":""},
+            {"name":"IsActive", "type" : "bit", "default":0},
             {"name":"OutRosAviaDate", "type" : "datetime", "default":""},
             {"name":"OutRosAviaNumber", "type" : "nchar(50)", "default":""}
         ],
     
-    "queries" : {
-        "select": "SELECT [id] ,[RegNumber] ,[DateCreate] ,convert(varchar, [DateTake], 23) as [DateTake] ,[OutNumber] ,convert(varchar, [OutDate], 23) as [OutDate]  ,[CountSheets] ,[SourceName] ,[ReturnOutDate] ,[ReturnOutNumber] ,[Result]  ,convert(varchar, [OutProjectDate], 23) as [OutProjectDate] ,[OutProjectNumber] ,[OutDenyDate] ,[OutDenyNumber] ,[OutDenyReason] ,[IsActive] ,[OutRosAviaDate] ,[OutRosAviaNumber] FROM [WWW_RegAirService]order by [DateCreate] desc",
-        "selectById": "select * from WWW_RegAirService WHERE id = @id",
-        "insert": "INSERT INTO [WWW_RegAirService] ([RegNumber] ,[DateCreate] ,[DateTake] ,[OutNumber] ,[OutDate] ,[CountSheets] ,[SourceName] ,[ReturnOutDate] ,[ReturnOutNumber] ,[Result] ,[OutProjectDate] ,[OutProjectNumber] ,[OutDenyDate] ,[OutDenyNumber] ,[OutDenyReason] ,[IsActive] ,[OutRosAviaDate] ,[OutRosAviaNumber]) VALUES (@RegNumber, @DateCreate, @DateTake, @OutNumber, @OutDate, @CountSheets, @SourceName, @ReturnOutDate, @ReturnOutNumber, @Result, @OutProjectDate, @OutProjectNumber, @OutDenyDate, @OutDenyNumber, @OutDenyReason, @IsActive, @OutRosAviaDate, @OutRosAviaNumber )",
-        "delete": "DELETE FROM WWW_RegAirService WHERE id = @id",
-        "update": "UPDATE [WWW_RegAirService] SET [RegNumber] = @RegNumber, [DateCreate] = @DateCreate, [DateTake] = @DateTake, [OutNumber] = @OutNumber, [OutDate] = @OutDate, [CountSheets] = @CountSheets, [SourceName] = @SourceName      ,[ReturnOutDate] = @ReturnOutDate      ,[ReturnOutNumber] = @ReturnOutNumber      ,[Result] = @Result      ,[OutProjectDate] = @OutProjectDate      ,[OutProjectNumber] = @OutProjectNumber      ,[OutDenyDate] = @OutDenyDate      ,[OutDenyNumber] = @OutDenyNumber      ,[OutDenyReason] = @OutDenyReason      ,[IsActive] = @IsActive      ,[OutRosAviaDate] = @OutRosAviaDate      ,[OutRosAviaNumber] = @OutRosAviaNumber WHERE id = @Id"
+        "queries" : {
+            "select": "SELECT [id] ,rtrim(ltrim([RegNumber])) as [RegNumber] ,convert(varchar, [DateCreate], 23) as [DateCreate] ,convert(varchar, [DateTake], 23) as [DateTake] ,rtrim(ltrim([OutNumber])) as [OutNumber] ,convert(varchar, [OutDate], 23) as [OutDate] ,rtrim(ltrim([CountSheets])) as [CountSheets] ,rtrim(ltrim([SourceName])) as [SourceName] ,convert(varchar, [ReturnOutDate], 23) as [ReturnOutDate] ,rtrim(ltrim([ReturnOutNumber])) as [ReturnOutNumber] ,rtrim(ltrim([Result])) as [Result] ,convert(varchar, [OutProjectDate], 23) as [OutProjectDate] ,rtrim(ltrim([OutProjectNumber])) as [OutProjectNumber] , convert(varchar, [OutDenyDate], 23) as [OutDenyDate] ,rtrim(ltrim([OutDenyNumber])) as [OutDenyNumber] ,rtrim(ltrim([OutDenyReason])) as [OutDenyReason] ,[IsActive] , convert(varchar, [OutRosAviaDate], 23) as [OutRosAviaDate] ,rtrim(ltrim([OutRosAviaNumber])) as [OutRosAviaNumber] FROM [WWW_RegAirService] R order by R.[DateCreate] desc", 
+            "selectOld": "SELECT [id] ,[RegNumber] ,convert(varchar, [DateCreate], 23) as [DateCreate] ,convert(varchar, [DateTake], 23) as [DateTake] ,[OutNumber] ,convert(varchar, [OutDate], 23) as [OutDate]  ,[CountSheets] ,[SourceName] ,[ReturnOutDate] ,[ReturnOutNumber] ,[Result]  ,convert(varchar, [OutProjectDate], 23) as [OutProjectDate] ,[OutProjectNumber] ,[OutDenyDate] ,[OutDenyNumber] ,[OutDenyReason] ,[IsActive] ,[OutRosAviaDate] ,[OutRosAviaNumber] FROM [WWW_RegAirService] order by [DateCreate] desc",
+            "selectById": "select * from WWW_RegAirService WHERE id = @id",
+            "add": "INSERT INTO [WWW_RegAirService] (@FIELDS) VALUES (@VALUES)",
+            "insert": "INSERT INTO [WWW_RegAirService] ([RegNumber] ,[DateCreate] ,[DateTake] ,[OutNumber] ,[OutDate] ,[CountSheets] ,[SourceName] ,[ReturnOutDate] ,[ReturnOutNumber] ,[Result] ,[OutProjectDate] ,[OutProjectNumber] ,[OutDenyDate] ,[OutDenyNumber] ,[OutDenyReason] ,[IsActive] ,[OutRosAviaDate] ,[OutRosAviaNumber]) VALUES (@RegNumber, @DateCreate, @DateTake, @OutNumber, @OutDate, @CountSheets, @SourceName, @ReturnOutDate, @ReturnOutNumber, @Result, @OutProjectDate, @OutProjectNumber, @OutDenyDate, @OutDenyNumber, @OutDenyReason, @IsActive, @OutRosAviaDate, @OutRosAviaNumber )",
+            "delete": "DELETE FROM WWW_RegAirService WHERE id = @id",
+            "edit": "UPDATE [WWW_RegAirService] SET @PARAM WHERE id = @Id",
+            "update": "UPDATE [WWW_RegAirService] SET [RegNumber] = @RegNumber, [DateCreate] = @DateCreate, [DateTake] = @DateTake, [OutNumber] = @OutNumber, [OutDate] = @OutDate, [CountSheets] = @CountSheets, [SourceName] = @SourceName      ,[ReturnOutDate] = @ReturnOutDate      ,[ReturnOutNumber] = @ReturnOutNumber      ,[Result] = @Result      ,[OutProjectDate] = @OutProjectDate      ,[OutProjectNumber] = @OutProjectNumber      ,[OutDenyDate] = @OutDenyDate      ,[OutDenyNumber] = @OutDenyNumber      ,[OutDenyReason] = @OutDenyReason      ,[IsActive] = @IsActive      ,[OutRosAviaDate] = @OutRosAviaDate      ,[OutRosAviaNumber] = @OutRosAviaNumber WHERE id = @Id"
+        }
+    },
+    "actionContent": {
+        "name" : "MVC_ActionContent",
+        "decsription" : "Страницы сайта nvavia.ru",
+        "fields": [            
+            {"name":"id", "type" : "int", "default":"", "notNull" : true, "primaryKey":true, "increment":true},
+            {"name":"Action", "type" : "nchar(100)", "default":""},
+            {"name":"Controller", "type" : "nchar(100)", "default":""},
+            {"name":"Name", "type" : "nchar(100)", "default":""},
+            {"name":"Content", "type" : "ntext", "default":""},
+            {"name":"Description", "type" : "nchar(300)", "default":""},
+            {"name":"Owner", "type" : "int", "default":0},
+            {"name":"IsActive", "type" : "bit", "default":0},
+            {"name":"DataArea", "type" : "ntext", "default":""},
+            {"name":"OrderKey", "type" : "int", "default":""},
+            {"name":"Context", "type" : "nchar(3)", "default":""},
+            {"name":"RecVersion", "type" : "int", "default":""},
+            {"name":"ChangeDate", "type" : "datetime", "default":"null"},
+            {"name":"CntSubHdr", "type" : "ntext", "default":""},
+            {"name":"CntFooter", "type" : "ntext", "default":""},
+            {"name":"ImageKey", "type" : "nchar(20)", "default":""},
+            {"name":"IsExStyle", "type" : "bit", "default":0},
+            {"name":"QRUrl", "type" : "nchar(512)", "default":""}
+        ],
+    
+        "queries" : {
+            "select": "select * from MVC_ActionContent_091219back",
+            "selectById": "select * from MVC_ActionContent_091219back WHERE id = @id",
+            "insert": "INSERT INTO [MVC_ActionContent_091219back] ([Action] ,[Controller] ,[Name] ,[Content] ,[Description] ,[Owner] ,[IsActive] ,[DataArea] ,[OrderKey] ,[Context] ,[RecVersion] ,[ChangeDate] ,[CntSubHdr] ,[CntFooter] ,[ImageKey] ,[IsExStyle] ,[QRUrl])VALUES (@Action, @Controller ,@Name, @Content, @Description, @Owner, @IsActive, @DataArea, @OrderKey, @Context, @RecVersion, @ChangeDate, @CntSubHdr, @CntFooter, @ImageKey, @IsExStyle, @QRUrl)",
+            "delete": "DELETE FROM MVC_ActionContent_091219back WHERE id = @id",
+            "update": "UPDATE [MVC_ActionContent_091219back] SET [Action] = @Action, [Controller] = @Controller, [Name] = @Name, [Content] = @Content, [Description] = @Description, [Owner] = @Owner, [IsActive] = @IsActive, [DataArea] = @DataArea, [OrderKey] = @OrderKey, [Context] = @Context, [RecVersion] = @RecVersion, [ChangeDate] = @ChangeDate, [CntSubHdr] = @CntSubHdr ,[CntFooter] = @CntFooter ,[ImageKey] = @ImageKey ,[IsExStyle] = @IsExStyle ,[QRUrl] = @QRUrl WHERE id = @Id"
+        }
     }
-}
 }
