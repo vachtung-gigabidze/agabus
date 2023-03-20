@@ -16,43 +16,43 @@ const schema = require('../graphql/schema');
 
 class MainController {
 
-    graphqlHTTP() {
-        const infoItems = [{
-            id: 1,
-            ItemType: 'News'
-        }];
-        const root = {
-            getAllInfoItem: () => {
-                    return infoItems
-                }
-                // async () =>{
-                //     try {
-                //         const pool = await poolPromise;
-                //         const result = await pool.request().query(queries.getAllInfoItem);
-                //         res.json(result.recordset);
-                //     } catch (error) {
-                //         res.status(500);
-                //         res.send(error.message);
-                //     }
-                // }
-                ,
-            //getInfoItem: ({id}) => this.getByIdInfoItem({id})
-            // ,
-            // createInfoItem: ({
-            //     input
-            // }) => {
-            //     const infoItem = createInfoItem(input);
-            //     infoItems.push(infoItem);
-            //     return infoItem;
-            // }
-        }
+    // graphqlHTTP() {
+    //     const infoItems = [{
+    //         id: 1,
+    //         ItemType: 'News'
+    //     }];
+    //     const root = {
+    //         getAllInfoItem: () => {
+    //                 return infoItems
+    //             }
+    //             // async () =>{
+    //             //     try {
+    //             //         const pool = await poolPromise;
+    //             //         const result = await pool.request().query(queries.getAllInfoItem);
+    //             //         res.json(result.recordset);
+    //             //     } catch (error) {
+    //             //         res.status(500);
+    //             //         res.send(error.message);
+    //             //     }
+    //             // }
+    //             ,
+    //         //getInfoItem: ({id}) => this.getByIdInfoItem({id})
+    //         // ,
+    //         // createInfoItem: ({
+    //         //     input
+    //         // }) => {
+    //         //     const infoItem = createInfoItem(input);
+    //         //     infoItems.push(infoItem);
+    //         //     return infoItem;
+    //         // }
+    //     }
 
-        graphqlHTTP({
-            schema,
-            graphiql: true,
-            rootValue: root,
-        })
-    }
+    //     graphqlHTTP({
+    //         schema,
+    //         graphiql: true,
+    //         rootValue: root,
+    //     })
+    // }
 
 
 

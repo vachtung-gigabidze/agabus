@@ -39,11 +39,11 @@
         "name" : "MVC_ActionContent",
         "decsription" : "Страницы сайта nvavia.ru",
         "fields": [            
-            {"name":"id", "type" : "int", "default":"", "notNull" : true, "primaryKey":true, "increment":true},
+            {"name":"id", "type" : "int", "default":"", "notNull" : true },
             {"name":"Action", "type" : "nchar(100)", "default":""},
             {"name":"Controller", "type" : "nchar(100)", "default":""},
             {"name":"Name", "type" : "nchar(100)", "default":""},
-            {"name":"Content", "type" : "ntext", "default":""},
+            {"name":"Content", "type" : "ntext", "default":"<div></div>"},
             {"name":"Description", "type" : "nchar(300)", "default":""},
             {"name":"Owner", "type" : "int", "default":0},
             {"name":"IsActive", "type" : "bit", "default":0},
@@ -60,10 +60,11 @@
         ],
     
         "queries" : {
-            "select": "select * from MVC_ActionContent_091219back",
-            "selectById": "select * from MVC_ActionContent_091219back WHERE id = @id",
-            "insert": "INSERT INTO [MVC_ActionContent_091219back] ([Action] ,[Controller] ,[Name] ,[Content] ,[Description] ,[Owner] ,[IsActive] ,[DataArea] ,[OrderKey] ,[Context] ,[RecVersion] ,[ChangeDate] ,[CntSubHdr] ,[CntFooter] ,[ImageKey] ,[IsExStyle] ,[QRUrl])VALUES (@Action, @Controller ,@Name, @Content, @Description, @Owner, @IsActive, @DataArea, @OrderKey, @Context, @RecVersion, @ChangeDate, @CntSubHdr, @CntFooter, @ImageKey, @IsExStyle, @QRUrl)",
+            "select": "select top 2 * from MVC_ActionContent_091219back",
+            "selectById": "select top 1 * from MVC_ActionContent_091219back WHERE id = @id",
+            "add": "INSERT INTO [MVC_ActionContent_091219back] (@FIELDS) VALUES (@VALUES)",
             "delete": "DELETE FROM MVC_ActionContent_091219back WHERE id = @id",
+            "edit": "UPDATE [MVC_ActionContent_091219back] SET @PARAM WHERE id = @Id",
             "update": "UPDATE [MVC_ActionContent_091219back] SET [Action] = @Action, [Controller] = @Controller, [Name] = @Name, [Content] = @Content, [Description] = @Description, [Owner] = @Owner, [IsActive] = @IsActive, [DataArea] = @DataArea, [OrderKey] = @OrderKey, [Context] = @Context, [RecVersion] = @RecVersion, [ChangeDate] = @ChangeDate, [CntSubHdr] = @CntSubHdr ,[CntFooter] = @CntFooter ,[ImageKey] = @ImageKey ,[IsExStyle] = @IsExStyle ,[QRUrl] = @QRUrl WHERE id = @Id"
         }
     }

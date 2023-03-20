@@ -91,10 +91,6 @@ class RegAirServiceController {
     }
 
     async updateRegAirService(req, res){
-
-
-        
-
         const validityData = (newRegAirService => {            
             const error = [];
             if (!newRegAirService.hasOwnProperty("RegNumber")) { error.push('Error RegNumber is null');}
@@ -150,13 +146,8 @@ class RegAirServiceController {
         testGetType();
 
         //const getValueDate = (property) => req.body.hasOwnProperty(property)?req.body[property]:'null';
-                
         
-
-        
-        
-        const build = async function f(poolRequest) {
-            
+        const build = async function f(poolRequest) {            
             
             const queryStr = createUpdate(tables.regAirService.queries.edit);
             //console.log('UPDATE build ', queryStr);

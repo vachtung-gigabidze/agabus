@@ -23,7 +23,7 @@ router.get('/api/regAirService', regAircontroller.getAllRegAirService);
 router.post('/api/addRegAirService', regAircontroller.addRegAirService);
 router.put('/api/updateRegAirService/:id/', regAircontroller.updateRegAirService);
 
-
-// router.use('/graphql', controller.graphqlHTTP);
+//Graphql
+//router.use('/graphql', controller.graphqlHTTP);
 
 module.exports = router;
