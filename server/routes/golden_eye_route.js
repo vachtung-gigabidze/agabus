@@ -3,6 +3,6 @@ const controller = require('../controller/golden_eye_controller');
 
 const router = express.Router();
 
-router.get('/find_person/:id', controller.findPerson);
+router.get('/find_person/:name', controller.findPerson);
 
 module.exports = router;
