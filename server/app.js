@@ -1,14 +1,25 @@
 const express = require('express');
+
+var { graphqlHTTP } = require('express-graphql');
+var schema  = require('./graphql/schema');
+// const { graphqlHTTP } = require('express-graphql');
+// const schema = require('./graphql/schema');
+// const infoItems = [{id:1, ItemType:'News'}];
+//const controller = require('./controller/controller');
+const actionContentController = require('./graphql/actionContentController');
+
 const app = express();
-var favicon = require('serve-favicon')
+//var favicon = require('serve-favicon')
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const morgan = require('morgan');
-const router = require('./routes/route');
+//const router = require('./routes/route');
+//const { Resolver } = require('dns');
 
+const PORT = 3000;
 
 // const {
 //     getActionContent,
@@ -17,7 +28,39 @@ const router = require('./routes/route');
 
 app.use(cors());
 
-app.use(favicon(path.join(__dirname, '../client', 'favicon-32x32.png')))
+// const createInfoItem = (input) => {
+//     const id = Date.now();
+//     return {
+//         id, ...input
+//     }
+// }
+
+// const root = {
+//     getAllInfoItem: () => {
+//         return infoItems
+//     },
+//     getInfoItem: ({id}) => {
+//         return infoItems.find(infoItem => infoItem.id == id)
+//     },
+//     createInfoItem: ({input}) => {
+//         const infoItem = createInfoItem(input);
+//         infoItems.push(infoItem);
+//         return infoItem;
+
+//     }
+// }
+// app.use('/graphql', controller.graphqlHTTP());
+// app.use(
+//     '/graphql',
+//     graphqlHTTP({
+//       schema,
+//       graphiql: true,
+//       rootValue: root,
+
+//     }),
+//   );
+
+//app.use(favicon(path.join(__dirname, '../client', 'favicon-32x32.png')))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -39,37 +82,28 @@ app.use(morgan('combined', {
     stream: accessLogStream
 }));
 
+//app.use(router);
 
 
-app.use(router);
+const root = {
+    getAllActionContent: actionContentController.getAllActionContent, 
+    getActionContent: ({id}) => actionContentController.getActionContentByID(id),
+    createActionContent: ({input}) => actionContentController.addActionContent(input),
+    updateActionContent: ({input}) => actionContentController.updateActionContent(input),
+    deleteActionContent: ({id}) => actionContentController.deleteActionContent(id),
 
+}
 
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
+}));
 
-const PORT = 3000;
+//app.use(express.static(path.join(__dirname, '../client')));
 
-
-//GET ALL
-// app.get('/api/actionContent', async (req, res) => {
-//     // console.log(AC);
-//     const actionContext = getActionContent();
-//     actionContext.then((value) => {
-//         console.log('backend get all');
-//         res.status(200).json(value);
-//     });
-// });
-
-// // Get by Id
-// app.get('/api/actionContent/:id/', async (req, res) => {
-//     const actionContext = getActionContentById(id);
-//     actionContext.then((value) => {
-//         console.log('backend get all');
-//         res.status(200).json(value);
-//     });
-
-// });
-
-
-app.use(express.static(path.join(__dirname, '../client')));
+//app.use(express.static(path.join(__dirname, '../node_modules')));
+// app.use(express.static(path.join(__dirname, '../node_modules/quill-html-edit-button')));
 
 // app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
