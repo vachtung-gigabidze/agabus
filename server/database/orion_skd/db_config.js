@@ -10,10 +10,12 @@ const config = {
         idleTimeoutMillis: 30000
     },
     options: {
+        encrypt: false,
         trustedConnection: true,
         enableArithAbort: false,
+        trustServerCertificate: true,
         cryptoCredentialsDetails: {
-            minVersion: 'TLSv1'
+          minVersion: 'TLSv1'
         }
     }    
 };
