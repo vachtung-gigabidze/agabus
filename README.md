@@ -1,6 +1,7 @@
 # agabus
 
 # add server/database/dbconfig.js
+# add server/database/orion_skd/db_config.js
 ```js
 const config = {
     server: 'add server',    
