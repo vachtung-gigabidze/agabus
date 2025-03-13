@@ -1,6 +1,7 @@
 const express = require('express');
 
 const goldenEyeRoutes = require("./routes/golden_eye_route");
+const authRoutes = require("./routes/auth_route");
 
 const app = express();
 //var favicon = require('serve-favicon')
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/golden_eye", goldenEyeRoutes);
+app.use("/auth", authRoutes);
 
 // parse application/json
 app.use(bodyParser.json());
