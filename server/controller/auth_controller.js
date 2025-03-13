@@ -1,8 +1,8 @@
 // controllers/AuthController.js
 const bcrypt = require('bcrypt');
-const { executeQuery } = require('../services/dbService');
-const OTPService = require('../services/OTPService');
-const EmailService = require('../services/EmailService');
+// const { executeQuery } = require('../services/dbService');
+const OTPService = require('../services/otp_service');
+const EmailService = require('../services/email_service');
 
 const register = async (req, res) => {
   const { email, password } = req.body;
