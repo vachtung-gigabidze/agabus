@@ -1,9 +1,10 @@
 // services/OTPService.js
 const redis = require('redis');
-const client = redis.createClient();
 
-client.on('error', (err) => {
-  console.error('Redis error:', err);
+var client = require('redis').createClient();
+
+client.on('error', function (err) {
+  console.log('Error ' + err);
 });
 
 const generateOTP = () => {
@@ -11,7 +12,7 @@ const generateOTP = () => {
 };
 
 const storeOTP = (email, otp) => {
-  client.setex(email, 600, otp); // 10 минут
+  client.set(email, 600, otp); // 10 минут
 };
 
 const getOTP = (email) => {
@@ -24,3 +25,29 @@ const getOTP = (email) => {
 };
 
 module.exports = { generateOTP, storeOTP, getOTP };
+
+
+
+
+
+
+// client.set('string key', 'string val', redis.print);
+// client.hset(
+//     'hash key',
+//     'hashtest 1',
+//     'some value',
+//     redis.print
+// );
+// client.hset(
+//     ['hash key', 'hashtest 2', 'some other value'],
+//     redis.print
+// );
+
+// client.hkeys('hash key', function (err, replies) {
+//     console.log(replies.length + ' replies:');
+//     replies.forEach(function (reply, i) {
+//         console.log('    ' + i + ': ' + reply);
+//     });
+
+//     client.quit();
+// });

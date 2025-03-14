@@ -2,16 +2,16 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'mail.nic.ru',
   auth: {
-    user: 'your_email@gmail.com',
-    pass: 'your_email_password',
+    user: 'mail',
+    pass: 'pass',
   },
 });
 
 const sendOTP = (email, otp) => {
   const mailOptions = {
-    from: 'your_email@gmail.com',
+    from: 'mail',
     to: email,
     subject: 'Your OTP Code',
     text: `Your OTP code is ${otp}. It will expire in 10 minutes.`,
