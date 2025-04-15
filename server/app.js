@@ -21,15 +21,16 @@ app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+console.log(`${__dirname}\\web\\driver_pass`);
 
 app.use("/golden_eye", goldenEyeRoutes);
 app.use("/auth", authRoutes);
+app.use('/driver_pass', express.static(`${__dirname}\\web\\driver_pass`));
 
 // parse application/json
 app.use(bodyParser.json());
 
 app.use(morgan('dev'));
-
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, '/logs/access.log'), {
     flags: 'a'
