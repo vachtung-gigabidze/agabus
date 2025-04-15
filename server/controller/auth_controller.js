@@ -1,14 +1,15 @@
 // controllers/AuthController.js
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 // const { executeQuery } = require('../services/dbService');
 const OTPService = require('../services/otp_service');
 const EmailService = require('../services/email_service');
+
 
 const register = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = '';//await bcrypt.hash(password, 10);
     const query = `
       INSERT INTO Users (email, password)
       VALUES (@email, @password)

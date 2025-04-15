@@ -14,7 +14,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv')
 dotenv.config()
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 1984;
 
 app.use(cors());
 
